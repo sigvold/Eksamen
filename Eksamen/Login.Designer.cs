@@ -28,46 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtBrukernavn = new System.Windows.Forms.TextBox();
+            this.txtPassord = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.lblBrukernavn = new System.Windows.Forms.Label();
+            this.lblPassord = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtUsername
+            // txtBrukernavn
             // 
-            this.txtUsername.Location = new System.Drawing.Point(46, 51);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(151, 20);
-            this.txtUsername.TabIndex = 0;
+            this.txtBrukernavn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.txtBrukernavn.Location = new System.Drawing.Point(165, 126);
+            this.txtBrukernavn.Multiline = true;
+            this.txtBrukernavn.Name = "txtBrukernavn";
+            this.txtBrukernavn.Size = new System.Drawing.Size(188, 26);
+            this.txtBrukernavn.TabIndex = 0;
             // 
-            // txtPassword
+            // txtPassord
             // 
-            this.txtPassword.Location = new System.Drawing.Point(46, 98);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(151, 20);
-            this.txtPassword.TabIndex = 1;
+            this.txtPassord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.txtPassord.Location = new System.Drawing.Point(165, 182);
+            this.txtPassord.Multiline = true;
+            this.txtPassord.Name = "txtPassord";
+            this.txtPassord.PasswordChar = '*';
+            this.txtPassord.Size = new System.Drawing.Size(188, 26);
+            this.txtPassord.TabIndex = 1;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(46, 145);
+            this.btnLogin.Location = new System.Drawing.Point(205, 214);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.Size = new System.Drawing.Size(98, 37);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // lblBrukernavn
+            // 
+            this.lblBrukernavn.AutoSize = true;
+            this.lblBrukernavn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBrukernavn.Location = new System.Drawing.Point(161, 99);
+            this.lblBrukernavn.Name = "lblBrukernavn";
+            this.lblBrukernavn.Size = new System.Drawing.Size(122, 24);
+            this.lblBrukernavn.TabIndex = 3;
+            this.lblBrukernavn.Text = "Brukernavn:";
+            // 
+            // lblPassord
+            // 
+            this.lblPassord.AutoSize = true;
+            this.lblPassord.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassord.Location = new System.Drawing.Point(161, 155);
+            this.lblPassord.Name = "lblPassord";
+            this.lblPassord.Size = new System.Drawing.Size(91, 24);
+            this.lblPassord.TabIndex = 4;
+            this.lblPassord.Text = "Passord:";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(500, 517);
+            this.Controls.Add(this.lblPassord);
+            this.Controls.Add(this.lblBrukernavn);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.txtPassord);
+            this.Controls.Add(this.txtBrukernavn);
             this.Name = "Login";
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
             this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -76,9 +105,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtBrukernavn;
+        private System.Windows.Forms.TextBox txtPassord;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Label lblBrukernavn;
+        private System.Windows.Forms.Label lblPassord;
     }
 }
 

@@ -132,25 +132,25 @@ namespace Eksamen
 
         private void ClearAllTextBoxs()
         {
-            txtbrukernavn.Text = "";
-            txtpassord.Text = "";
-            txtstilling.Text = "";
-            txtprosjekt.Text = "";
-            txttelefonnr.Text = "";
-            txtadresse.Text = "";
-            txtpostnr.Text = "";
-            txtisadmin.Text = "";
+            txtBrukernavn.Text = "";
+            txtPassord.Text = "";
+            txtStilling.Text = "";
+            txtProsjekt.Text = "";
+            txtTelefonnr.Text = "";
+            txtAdresse.Text = "";
+            txtPostnr.Text = "";
+            txtIsadmin.Text = "";
         }
 
         private void HideIfNotAdmin()
         {
             if (IsAdmin == 0)
             {
-                lblisadmin.Visible = false;
-                txtisadmin.Visible = false;
+                lblIsadmin.Visible = false;
+                txtIsadmin.Visible = false;
 
-                btnleggtil.Visible = false;
-                btnslett.Visible = false;
+                btnLeggtil.Visible = false;
+                btnSlett.Visible = false;
             }
         }
 
@@ -158,32 +158,32 @@ namespace Eksamen
         private void Main_Load(object sender, EventArgs e)
         {
             Print();
-            lblUser.Text = "Velkommen: " + InnloggetBrukernavn; // Setter teksten til etiketten
+            lblUser.Text = "Velkommen: " + InnloggetBrukernavn;
             HideIfNotAdmin();
         }
 
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             CurrentSelectedID = (int)DataGridView.CurrentRow.Cells[0].Value;
-            txtbrukernavn.Text = DataGridView.CurrentRow.Cells[1].Value.ToString();
-            txtpassord.Text = DataGridView.CurrentRow.Cells[2].Value.ToString();
-            txtstilling.Text = DataGridView.CurrentRow.Cells[3].Value.ToString();
-            txtprosjekt.Text = DataGridView.CurrentRow.Cells[4].Value.ToString();
-            txttelefonnr.Text = DataGridView.CurrentRow.Cells[5].Value.ToString();
-            txtadresse.Text = DataGridView.CurrentRow.Cells[6].Value.ToString();
-            txtpostnr.Text = DataGridView.CurrentRow.Cells[7].Value.ToString();
-            txtisadmin.Text = DataGridView.CurrentRow.Cells[8].Value.ToString();
+            txtBrukernavn.Text = DataGridView.CurrentRow.Cells[1].Value.ToString();
+            txtPassord.Text = DataGridView.CurrentRow.Cells[2].Value.ToString();
+            txtStilling.Text = DataGridView.CurrentRow.Cells[3].Value.ToString();
+            txtProsjekt.Text = DataGridView.CurrentRow.Cells[4].Value.ToString();
+            txtTelefonnr.Text = DataGridView.CurrentRow.Cells[5].Value.ToString();
+            txtAdresse.Text = DataGridView.CurrentRow.Cells[6].Value.ToString();
+            txtPostnr.Text = DataGridView.CurrentRow.Cells[7].Value.ToString();
+            txtIsadmin.Text = DataGridView.CurrentRow.Cells[8].Value.ToString();
         }
 
         private void btnoppdater_Click(object sender, EventArgs e)
         {
             
-            int TelefonnrINT = Convert.ToInt32(txttelefonnr.Text);
-            int PostnrINT = Convert.ToInt32(txtpostnr.Text);
-            int IsAdminINT = Convert.ToInt32(txtisadmin.Text);
+            int TelefonnrINT = Convert.ToInt32(txtTelefonnr.Text);
+            int PostnrINT = Convert.ToInt32(txtPostnr.Text);
+            int IsAdminINT = Convert.ToInt32(txtIsadmin.Text);
 
 
-            string updateQuery = $"UPDATE eksamen_db.Brukere SET Brukernavn='{txtbrukernavn.Text}', Passord='{txtpassord.Text}', Stilling='{txtstilling.Text}', Prosjekt='{txtprosjekt.Text}', Telefonnr='{TelefonnrINT}', Adresse='{txtadresse.Text}', Postnr='{PostnrINT}', IsAdmin='{IsAdminINT}' WHERE id='{CurrentSelectedID}'";
+            string updateQuery = $"UPDATE eksamen_db.Brukere SET Brukernavn='{txtBrukernavn.Text}', Passord='{txtPassord.Text}', Stilling='{txtStilling.Text}', Prosjekt='{txtProsjekt.Text}', Telefonnr='{TelefonnrINT}', Adresse='{txtAdresse.Text}', Postnr='{PostnrINT}', IsAdmin='{IsAdminINT}' WHERE id='{CurrentSelectedID}'";
             executeQuery(updateQuery);
 
             if (UserID == CurrentSelectedID)
@@ -203,12 +203,12 @@ namespace Eksamen
 
         private void btnleggtil_Click(object sender, EventArgs e)
         {
-            int TelefonnrINT = Convert.ToInt32(txttelefonnr.Text);
-            int PostnrINT = Convert.ToInt32(txtpostnr.Text);
-            int IsAdminINT = Convert.ToInt32(txtisadmin.Text);
+            int TelefonnrINT = Convert.ToInt32(txtTelefonnr.Text);
+            int PostnrINT = Convert.ToInt32(txtPostnr.Text);
+            int IsAdminINT = Convert.ToInt32(txtIsadmin.Text);
 
 
-            string insertQuery = $"INSERT INTO eksamen_db.Brukere (id, Brukernavn, Passord, Stilling, Prosjekt, Telefonnr, Adresse, Postnr, IsAdmin)VALUES('{0}','{txtbrukernavn.Text}', '{txtpassord.Text}', '{txtstilling.Text}', '{txtprosjekt.Text}', '{TelefonnrINT}', '{txtadresse.Text}', '{PostnrINT}', '{IsAdminINT}')";
+            string insertQuery = $"INSERT INTO eksamen_db.Brukere (id, Brukernavn, Passord, Stilling, Prosjekt, Telefonnr, Adresse, Postnr, IsAdmin)VALUES('{0}','{txtBrukernavn.Text}', '{txtPassord.Text}', '{txtStilling.Text}', '{txtProsjekt.Text}', '{TelefonnrINT}', '{txtAdresse.Text}', '{PostnrINT}', '{IsAdminINT}')";
             executeQuery(insertQuery);
 
             Print();
@@ -241,6 +241,11 @@ namespace Eksamen
             Login loginForm = new Login();
             loginForm.Closed += (s, args) => this.Close();
             loginForm.Show();
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
     }
 }

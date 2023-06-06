@@ -47,15 +47,14 @@ namespace Eksamen
                 string SelectQuery = "SELECT * FROM Brukere WHERE Brukernavn = @Username AND Passord = @Password";
                 MySqlCommand cmd = new MySqlCommand(SelectQuery, connection);
 
-                cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                cmd.Parameters.AddWithValue("@Username", txtBrukernavn.Text);
+                cmd.Parameters.AddWithValue("@Password", txtPassord.Text);
                
                 MySqlDataReader mdr = cmd.ExecuteReader();
 
                 if (mdr.Read())
                 {
                     Console.WriteLine("SUCCESS");
-                   // int userId = mdr.GetInt32("id");
                     this.Hide();
                     Main frm2 = new Main(mdr);
                     frm2.ShowDialog();
@@ -64,7 +63,7 @@ namespace Eksamen
             }
             catch (Exception ex)
             {
-                Console.WriteLine("login failed");
+                Console.WriteLine("login failed" + ex);
             }
 
             closeConnection();
@@ -74,6 +73,11 @@ namespace Eksamen
         private void Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
     }
 }

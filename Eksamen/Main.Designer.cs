@@ -30,34 +30,37 @@
         {
             this.DataGridView = new System.Windows.Forms.DataGridView();
             this.lblUser = new System.Windows.Forms.Label();
-            this.txtbrukernavn = new System.Windows.Forms.TextBox();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.txtpassord = new System.Windows.Forms.TextBox();
-            this.lblstilling = new System.Windows.Forms.Label();
-            this.txtstilling = new System.Windows.Forms.TextBox();
+            this.txtBrukernavn = new System.Windows.Forms.TextBox();
+            this.lblBrukernavn = new System.Windows.Forms.Label();
+            this.lblPassord = new System.Windows.Forms.Label();
+            this.txtPassord = new System.Windows.Forms.TextBox();
+            this.lblStilling = new System.Windows.Forms.Label();
+            this.txtStilling = new System.Windows.Forms.TextBox();
             this.lblprosjekt = new System.Windows.Forms.Label();
-            this.txtprosjekt = new System.Windows.Forms.TextBox();
-            this.lbltelefonnr = new System.Windows.Forms.Label();
-            this.txttelefonnr = new System.Windows.Forms.TextBox();
+            this.txtProsjekt = new System.Windows.Forms.TextBox();
+            this.lblTelefonnr = new System.Windows.Forms.Label();
+            this.txtTelefonnr = new System.Windows.Forms.TextBox();
             this.lbladresse = new System.Windows.Forms.Label();
-            this.txtadresse = new System.Windows.Forms.TextBox();
-            this.lblisadmin = new System.Windows.Forms.Label();
-            this.txtisadmin = new System.Windows.Forms.TextBox();
-            this.lblpostnr = new System.Windows.Forms.Label();
-            this.txtpostnr = new System.Windows.Forms.TextBox();
-            this.btnoppdater = new System.Windows.Forms.Button();
-            this.btnleggtil = new System.Windows.Forms.Button();
-            this.btnslett = new System.Windows.Forms.Button();
-            this.btnloggut = new System.Windows.Forms.Button();
+            this.txtAdresse = new System.Windows.Forms.TextBox();
+            this.lblIsadmin = new System.Windows.Forms.Label();
+            this.txtIsadmin = new System.Windows.Forms.TextBox();
+            this.lblPostnr = new System.Windows.Forms.Label();
+            this.txtPostnr = new System.Windows.Forms.TextBox();
+            this.btnOppdater = new System.Windows.Forms.Button();
+            this.btnLeggtil = new System.Windows.Forms.Button();
+            this.btnSlett = new System.Windows.Forms.Button();
+            this.btnLoggut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // DataGridView
             // 
+            this.DataGridView.AllowUserToAddRows = false;
+            this.DataGridView.AllowUserToDeleteRows = false;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Location = new System.Drawing.Point(160, 81);
             this.DataGridView.Name = "DataGridView";
+            this.DataGridView.ReadOnly = true;
             this.DataGridView.Size = new System.Drawing.Size(787, 306);
             this.DataGridView.TabIndex = 0;
             this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
@@ -71,54 +74,54 @@
             this.lblUser.Size = new System.Drawing.Size(0, 13);
             this.lblUser.TabIndex = 1;
             // 
-            // txtbrukernavn
+            // txtBrukernavn
             // 
-            this.txtbrukernavn.Location = new System.Drawing.Point(30, 97);
-            this.txtbrukernavn.Name = "txtbrukernavn";
-            this.txtbrukernavn.Size = new System.Drawing.Size(100, 20);
-            this.txtbrukernavn.TabIndex = 2;
+            this.txtBrukernavn.Location = new System.Drawing.Point(30, 97);
+            this.txtBrukernavn.Name = "txtBrukernavn";
+            this.txtBrukernavn.Size = new System.Drawing.Size(100, 20);
+            this.txtBrukernavn.TabIndex = 2;
             // 
-            // lblUsername
+            // lblBrukernavn
             // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(27, 81);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(65, 13);
-            this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "Brukernavn:";
+            this.lblBrukernavn.AutoSize = true;
+            this.lblBrukernavn.Location = new System.Drawing.Point(27, 81);
+            this.lblBrukernavn.Name = "lblBrukernavn";
+            this.lblBrukernavn.Size = new System.Drawing.Size(65, 13);
+            this.lblBrukernavn.TabIndex = 3;
+            this.lblBrukernavn.Text = "Brukernavn:";
             // 
-            // lblPassword
+            // lblPassord
             // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(27, 120);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(48, 13);
-            this.lblPassword.TabIndex = 5;
-            this.lblPassword.Text = "Passord:";
+            this.lblPassord.AutoSize = true;
+            this.lblPassord.Location = new System.Drawing.Point(27, 120);
+            this.lblPassord.Name = "lblPassord";
+            this.lblPassord.Size = new System.Drawing.Size(48, 13);
+            this.lblPassord.TabIndex = 5;
+            this.lblPassord.Text = "Passord:";
             // 
-            // txtpassord
+            // txtPassord
             // 
-            this.txtpassord.Location = new System.Drawing.Point(30, 136);
-            this.txtpassord.Name = "txtpassord";
-            this.txtpassord.PasswordChar = '*';
-            this.txtpassord.Size = new System.Drawing.Size(100, 20);
-            this.txtpassord.TabIndex = 4;
+            this.txtPassord.Location = new System.Drawing.Point(30, 136);
+            this.txtPassord.Name = "txtPassord";
+            this.txtPassord.PasswordChar = '*';
+            this.txtPassord.Size = new System.Drawing.Size(100, 20);
+            this.txtPassord.TabIndex = 4;
             // 
-            // lblstilling
+            // lblStilling
             // 
-            this.lblstilling.AutoSize = true;
-            this.lblstilling.Location = new System.Drawing.Point(27, 158);
-            this.lblstilling.Name = "lblstilling";
-            this.lblstilling.Size = new System.Drawing.Size(40, 13);
-            this.lblstilling.TabIndex = 7;
-            this.lblstilling.Text = "Stilling:";
+            this.lblStilling.AutoSize = true;
+            this.lblStilling.Location = new System.Drawing.Point(27, 158);
+            this.lblStilling.Name = "lblStilling";
+            this.lblStilling.Size = new System.Drawing.Size(40, 13);
+            this.lblStilling.TabIndex = 7;
+            this.lblStilling.Text = "Stilling:";
             // 
-            // txtstilling
+            // txtStilling
             // 
-            this.txtstilling.Location = new System.Drawing.Point(30, 174);
-            this.txtstilling.Name = "txtstilling";
-            this.txtstilling.Size = new System.Drawing.Size(100, 20);
-            this.txtstilling.TabIndex = 6;
+            this.txtStilling.Location = new System.Drawing.Point(30, 174);
+            this.txtStilling.Name = "txtStilling";
+            this.txtStilling.Size = new System.Drawing.Size(100, 20);
+            this.txtStilling.TabIndex = 6;
             // 
             // lblprosjekt
             // 
@@ -129,28 +132,28 @@
             this.lblprosjekt.TabIndex = 9;
             this.lblprosjekt.Text = "Prosjekt:";
             // 
-            // txtprosjekt
+            // txtProsjekt
             // 
-            this.txtprosjekt.Location = new System.Drawing.Point(30, 213);
-            this.txtprosjekt.Name = "txtprosjekt";
-            this.txtprosjekt.Size = new System.Drawing.Size(100, 20);
-            this.txtprosjekt.TabIndex = 8;
+            this.txtProsjekt.Location = new System.Drawing.Point(30, 213);
+            this.txtProsjekt.Name = "txtProsjekt";
+            this.txtProsjekt.Size = new System.Drawing.Size(100, 20);
+            this.txtProsjekt.TabIndex = 8;
             // 
-            // lbltelefonnr
+            // lblTelefonnr
             // 
-            this.lbltelefonnr.AutoSize = true;
-            this.lbltelefonnr.Location = new System.Drawing.Point(27, 235);
-            this.lbltelefonnr.Name = "lbltelefonnr";
-            this.lbltelefonnr.Size = new System.Drawing.Size(55, 13);
-            this.lbltelefonnr.TabIndex = 11;
-            this.lbltelefonnr.Text = "Telefonnr:";
+            this.lblTelefonnr.AutoSize = true;
+            this.lblTelefonnr.Location = new System.Drawing.Point(27, 235);
+            this.lblTelefonnr.Name = "lblTelefonnr";
+            this.lblTelefonnr.Size = new System.Drawing.Size(55, 13);
+            this.lblTelefonnr.TabIndex = 11;
+            this.lblTelefonnr.Text = "Telefonnr:";
             // 
-            // txttelefonnr
+            // txtTelefonnr
             // 
-            this.txttelefonnr.Location = new System.Drawing.Point(30, 251);
-            this.txttelefonnr.Name = "txttelefonnr";
-            this.txttelefonnr.Size = new System.Drawing.Size(100, 20);
-            this.txttelefonnr.TabIndex = 10;
+            this.txtTelefonnr.Location = new System.Drawing.Point(30, 251);
+            this.txtTelefonnr.Name = "txtTelefonnr";
+            this.txtTelefonnr.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefonnr.TabIndex = 10;
             // 
             // lbladresse
             // 
@@ -161,114 +164,115 @@
             this.lbladresse.TabIndex = 13;
             this.lbladresse.Text = "Adresse:";
             // 
-            // txtadresse
+            // txtAdresse
             // 
-            this.txtadresse.Location = new System.Drawing.Point(30, 290);
-            this.txtadresse.Name = "txtadresse";
-            this.txtadresse.Size = new System.Drawing.Size(100, 20);
-            this.txtadresse.TabIndex = 12;
+            this.txtAdresse.Location = new System.Drawing.Point(30, 290);
+            this.txtAdresse.Name = "txtAdresse";
+            this.txtAdresse.Size = new System.Drawing.Size(100, 20);
+            this.txtAdresse.TabIndex = 12;
             // 
-            // lblisadmin
+            // lblIsadmin
             // 
-            this.lblisadmin.AutoSize = true;
-            this.lblisadmin.Location = new System.Drawing.Point(27, 351);
-            this.lblisadmin.Name = "lblisadmin";
-            this.lblisadmin.Size = new System.Drawing.Size(47, 13);
-            this.lblisadmin.TabIndex = 17;
-            this.lblisadmin.Text = "IsAdmin:";
+            this.lblIsadmin.AutoSize = true;
+            this.lblIsadmin.Location = new System.Drawing.Point(27, 351);
+            this.lblIsadmin.Name = "lblIsadmin";
+            this.lblIsadmin.Size = new System.Drawing.Size(47, 13);
+            this.lblIsadmin.TabIndex = 17;
+            this.lblIsadmin.Text = "IsAdmin:";
             // 
-            // txtisadmin
+            // txtIsadmin
             // 
-            this.txtisadmin.Location = new System.Drawing.Point(30, 367);
-            this.txtisadmin.Name = "txtisadmin";
-            this.txtisadmin.Size = new System.Drawing.Size(100, 20);
-            this.txtisadmin.TabIndex = 16;
+            this.txtIsadmin.Location = new System.Drawing.Point(30, 367);
+            this.txtIsadmin.Name = "txtIsadmin";
+            this.txtIsadmin.Size = new System.Drawing.Size(100, 20);
+            this.txtIsadmin.TabIndex = 16;
             // 
-            // lblpostnr
+            // lblPostnr
             // 
-            this.lblpostnr.AutoSize = true;
-            this.lblpostnr.Location = new System.Drawing.Point(27, 312);
-            this.lblpostnr.Name = "lblpostnr";
-            this.lblpostnr.Size = new System.Drawing.Size(40, 13);
-            this.lblpostnr.TabIndex = 15;
-            this.lblpostnr.Text = "Postnr:";
+            this.lblPostnr.AutoSize = true;
+            this.lblPostnr.Location = new System.Drawing.Point(27, 312);
+            this.lblPostnr.Name = "lblPostnr";
+            this.lblPostnr.Size = new System.Drawing.Size(40, 13);
+            this.lblPostnr.TabIndex = 15;
+            this.lblPostnr.Text = "Postnr:";
             // 
-            // txtpostnr
+            // txtPostnr
             // 
-            this.txtpostnr.Location = new System.Drawing.Point(30, 328);
-            this.txtpostnr.Name = "txtpostnr";
-            this.txtpostnr.Size = new System.Drawing.Size(100, 20);
-            this.txtpostnr.TabIndex = 14;
+            this.txtPostnr.Location = new System.Drawing.Point(30, 328);
+            this.txtPostnr.Name = "txtPostnr";
+            this.txtPostnr.Size = new System.Drawing.Size(100, 20);
+            this.txtPostnr.TabIndex = 14;
             // 
-            // btnoppdater
+            // btnOppdater
             // 
-            this.btnoppdater.Location = new System.Drawing.Point(30, 412);
-            this.btnoppdater.Name = "btnoppdater";
-            this.btnoppdater.Size = new System.Drawing.Size(75, 23);
-            this.btnoppdater.TabIndex = 18;
-            this.btnoppdater.Text = "Oppdater";
-            this.btnoppdater.UseVisualStyleBackColor = true;
-            this.btnoppdater.Click += new System.EventHandler(this.btnoppdater_Click);
+            this.btnOppdater.Location = new System.Drawing.Point(30, 412);
+            this.btnOppdater.Name = "btnOppdater";
+            this.btnOppdater.Size = new System.Drawing.Size(75, 23);
+            this.btnOppdater.TabIndex = 18;
+            this.btnOppdater.Text = "Oppdater";
+            this.btnOppdater.UseVisualStyleBackColor = true;
+            this.btnOppdater.Click += new System.EventHandler(this.btnoppdater_Click);
             // 
-            // btnleggtil
+            // btnLeggtil
             // 
-            this.btnleggtil.Location = new System.Drawing.Point(134, 412);
-            this.btnleggtil.Name = "btnleggtil";
-            this.btnleggtil.Size = new System.Drawing.Size(75, 23);
-            this.btnleggtil.TabIndex = 19;
-            this.btnleggtil.Text = "Legg til";
-            this.btnleggtil.UseVisualStyleBackColor = true;
-            this.btnleggtil.Click += new System.EventHandler(this.btnleggtil_Click);
+            this.btnLeggtil.Location = new System.Drawing.Point(134, 412);
+            this.btnLeggtil.Name = "btnLeggtil";
+            this.btnLeggtil.Size = new System.Drawing.Size(75, 23);
+            this.btnLeggtil.TabIndex = 19;
+            this.btnLeggtil.Text = "Legg til";
+            this.btnLeggtil.UseVisualStyleBackColor = true;
+            this.btnLeggtil.Click += new System.EventHandler(this.btnleggtil_Click);
             // 
-            // btnslett
+            // btnSlett
             // 
-            this.btnslett.Location = new System.Drawing.Point(236, 412);
-            this.btnslett.Name = "btnslett";
-            this.btnslett.Size = new System.Drawing.Size(75, 23);
-            this.btnslett.TabIndex = 20;
-            this.btnslett.Text = "Slett";
-            this.btnslett.UseVisualStyleBackColor = true;
-            this.btnslett.Click += new System.EventHandler(this.btnslett_Click);
+            this.btnSlett.Location = new System.Drawing.Point(236, 412);
+            this.btnSlett.Name = "btnSlett";
+            this.btnSlett.Size = new System.Drawing.Size(75, 23);
+            this.btnSlett.TabIndex = 20;
+            this.btnSlett.Text = "Slett";
+            this.btnSlett.UseVisualStyleBackColor = true;
+            this.btnSlett.Click += new System.EventHandler(this.btnslett_Click);
             // 
-            // btnloggut
+            // btnLoggut
             // 
-            this.btnloggut.Location = new System.Drawing.Point(30, 472);
-            this.btnloggut.Name = "btnloggut";
-            this.btnloggut.Size = new System.Drawing.Size(75, 23);
-            this.btnloggut.TabIndex = 21;
-            this.btnloggut.Text = "Logg ut";
-            this.btnloggut.UseVisualStyleBackColor = true;
-            this.btnloggut.Click += new System.EventHandler(this.btnloggut_Click);
+            this.btnLoggut.Location = new System.Drawing.Point(30, 472);
+            this.btnLoggut.Name = "btnLoggut";
+            this.btnLoggut.Size = new System.Drawing.Size(75, 23);
+            this.btnLoggut.TabIndex = 21;
+            this.btnLoggut.Text = "Logg ut";
+            this.btnLoggut.UseVisualStyleBackColor = true;
+            this.btnLoggut.Click += new System.EventHandler(this.btnloggut_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1001, 549);
-            this.Controls.Add(this.btnloggut);
-            this.Controls.Add(this.btnslett);
-            this.Controls.Add(this.btnleggtil);
-            this.Controls.Add(this.btnoppdater);
-            this.Controls.Add(this.lblisadmin);
-            this.Controls.Add(this.txtisadmin);
-            this.Controls.Add(this.lblpostnr);
-            this.Controls.Add(this.txtpostnr);
+            this.Controls.Add(this.btnLoggut);
+            this.Controls.Add(this.btnSlett);
+            this.Controls.Add(this.btnLeggtil);
+            this.Controls.Add(this.btnOppdater);
+            this.Controls.Add(this.lblIsadmin);
+            this.Controls.Add(this.txtIsadmin);
+            this.Controls.Add(this.lblPostnr);
+            this.Controls.Add(this.txtPostnr);
             this.Controls.Add(this.lbladresse);
-            this.Controls.Add(this.txtadresse);
-            this.Controls.Add(this.lbltelefonnr);
-            this.Controls.Add(this.txttelefonnr);
+            this.Controls.Add(this.txtAdresse);
+            this.Controls.Add(this.lblTelefonnr);
+            this.Controls.Add(this.txtTelefonnr);
             this.Controls.Add(this.lblprosjekt);
-            this.Controls.Add(this.txtprosjekt);
-            this.Controls.Add(this.lblstilling);
-            this.Controls.Add(this.txtstilling);
-            this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtpassord);
-            this.Controls.Add(this.lblUsername);
-            this.Controls.Add(this.txtbrukernavn);
+            this.Controls.Add(this.txtProsjekt);
+            this.Controls.Add(this.lblStilling);
+            this.Controls.Add(this.txtStilling);
+            this.Controls.Add(this.lblPassord);
+            this.Controls.Add(this.txtPassord);
+            this.Controls.Add(this.lblBrukernavn);
+            this.Controls.Add(this.txtBrukernavn);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.DataGridView);
             this.Name = "Main";
             this.Text = "Main";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -280,25 +284,25 @@
 
         private System.Windows.Forms.DataGridView DataGridView;
         private System.Windows.Forms.Label lblUser;
-        private System.Windows.Forms.TextBox txtbrukernavn;
-        private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.TextBox txtpassord;
-        private System.Windows.Forms.Label lblstilling;
-        private System.Windows.Forms.TextBox txtstilling;
+        private System.Windows.Forms.TextBox txtBrukernavn;
+        private System.Windows.Forms.Label lblBrukernavn;
+        private System.Windows.Forms.Label lblPassord;
+        private System.Windows.Forms.TextBox txtPassord;
+        private System.Windows.Forms.Label lblStilling;
+        private System.Windows.Forms.TextBox txtStilling;
         private System.Windows.Forms.Label lblprosjekt;
-        private System.Windows.Forms.TextBox txtprosjekt;
-        private System.Windows.Forms.Label lbltelefonnr;
-        private System.Windows.Forms.TextBox txttelefonnr;
+        private System.Windows.Forms.TextBox txtProsjekt;
+        private System.Windows.Forms.Label lblTelefonnr;
+        private System.Windows.Forms.TextBox txtTelefonnr;
         private System.Windows.Forms.Label lbladresse;
-        private System.Windows.Forms.TextBox txtadresse;
-        private System.Windows.Forms.Label lblisadmin;
-        private System.Windows.Forms.TextBox txtisadmin;
-        private System.Windows.Forms.Label lblpostnr;
-        private System.Windows.Forms.TextBox txtpostnr;
-        private System.Windows.Forms.Button btnoppdater;
-        private System.Windows.Forms.Button btnleggtil;
-        private System.Windows.Forms.Button btnslett;
-        private System.Windows.Forms.Button btnloggut;
+        private System.Windows.Forms.TextBox txtAdresse;
+        private System.Windows.Forms.Label lblIsadmin;
+        private System.Windows.Forms.TextBox txtIsadmin;
+        private System.Windows.Forms.Label lblPostnr;
+        private System.Windows.Forms.TextBox txtPostnr;
+        private System.Windows.Forms.Button btnOppdater;
+        private System.Windows.Forms.Button btnLeggtil;
+        private System.Windows.Forms.Button btnSlett;
+        private System.Windows.Forms.Button btnLoggut;
     }
 }
