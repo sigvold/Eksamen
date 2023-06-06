@@ -15,8 +15,6 @@ namespace Eksamen
     public partial class Login : Form
     {
         MySqlConnection connection = new MySqlConnection("server=192.168.1.141;port=3306;user id=sigve;password=jd_es;database=eksamen_db");
-        //string cs = $"SERVER=192.168.1.141;DATABASE=eksamen_db;UID=sigve;PASSWORD=jd_es";
-        //var con = new MySqlConnection(cs);
 
         public Login()
         {
@@ -42,12 +40,9 @@ namespace Eksamen
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           // string cs = $"SERVER=192.168.1.141;DATABASE=eksamen_db;UID=sigve;PASSWORD=jd_es";
-            //var con = new MySqlConnection(cs);
 
             try
             {
-                //connection.Open();
                 openConnection();
                 string SelectQuery = "SELECT * FROM Brukere WHERE Brukernavn = @Username AND Passord = @Password";
                 MySqlCommand cmd = new MySqlCommand(SelectQuery, connection);
@@ -65,7 +60,7 @@ namespace Eksamen
                     Main frm2 = new Main(mdr);
                     frm2.ShowDialog();
                 }
-
+                mdr.Close();
             }
             catch (Exception ex)
             {

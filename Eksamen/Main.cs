@@ -1,6 +1,7 @@
 ﻿using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -77,6 +78,7 @@ namespace Eksamen
 
         private void Print()
         {
+            openConnection();
             if (IsAdmin == 1)
             {
                 try
@@ -115,10 +117,20 @@ namespace Eksamen
 
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        private void ClearAllTextBoxs()
         {
-            Print();
-            lblUser.Text = "Velkommen: " + InnloggetBrukernavn; // Setter teksten til etiketten
+            txtbrukernavn.Text = "";
+            txtpassord.Text = "";
+            txtstilling.Text = "";
+            txtprosjekt.Text = "";
+            txttelefonnr.Text = "";
+            txtadresse.Text = "";
+            txtpostnr.Text = "";
+            txtisadmin.Text = "";
+        }
+
+        private void HideIfNotAdmin()
+        {
             if (IsAdmin == 0)
             {
                 lblisadmin.Visible = false;
@@ -127,13 +139,38 @@ namespace Eksamen
                 btnleggtil.Visible = false;
                 btnslett.Visible = false;
             }
-            else
-            {
-
-            }
         }
 
-        private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private bool IfUserExists(String Username)
+        {
+            openConnection();
+            string SelectQuery = "SELECT * FROM eksamen_db.Brukere WHERE Brukernavn = @Username";
+            command = new MySqlCommand(SelectQuery, connection);
+            command.Parameters.AddWithValue("@Username", Username);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Close();
+                closeConnection();
+                MessageBox.Show("Brukernavnet er tatt!");
+                return true;
+            }
+            reader.Close();
+            closeConnection();
+            return false;
+        }
+
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            Print();
+            lblUser.Text = "Velkommen: " + InnloggetBrukernavn; // Setter teksten til etiketten
+            HideIfNotAdmin();
+        }
+
+        private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             CurrentSelectedID = (int)DataGridView.CurrentRow.Cells[0].Value;
             txtbrukernavn.Text = DataGridView.CurrentRow.Cells[1].Value.ToString();
@@ -148,36 +185,32 @@ namespace Eksamen
 
         private void btnoppdater_Click(object sender, EventArgs e)
         {
-
+            
             int TelefonnrINT = Convert.ToInt32(txttelefonnr.Text);
             int PostnrINT = Convert.ToInt32(txtpostnr.Text);
             int IsAdminINT = Convert.ToInt32(txtisadmin.Text);
 
+            if (CurrentSelectedID != UserID && IsAdmin == 0)
+            {
+                Console.WriteLine("Secuity Breach!");
+                return;
+            }
+
             string updateQuery = $"UPDATE eksamen_db.Brukere SET Brukernavn='{txtbrukernavn.Text}', Passord='{txtpassord.Text}', Stilling='{txtstilling.Text}', Prosjekt='{txtprosjekt.Text}', Telefonnr='{TelefonnrINT}', Adresse='{txtadresse.Text}', Postnr='{PostnrINT}', IsAdmin='{IsAdminINT}' WHERE id='{CurrentSelectedID}'";
             executeQuery(updateQuery);
-            IsAdmin = IsAdminINT;
 
-            if (IsAdmin == 0)
+            if (UserID == CurrentSelectedID)
             {
-                lblisadmin.Visible = false;
-                txtisadmin.Visible = false;
-
-                btnleggtil.Visible = false;
-                btnslett.Visible = false;
+                Console.WriteLine("Changed Self Data");
+                IsAdmin = IsAdminINT;
             }
-            //MAKE FUNCTION LATER
+
+            HideIfNotAdmin();
 
             Print();
 
             //Make this a function
-            txtbrukernavn.Text = "";
-            txtpassord.Text = "";
-            txtstilling.Text = "";
-            txtprosjekt.Text = "";
-            txttelefonnr.Text = "";
-            txtadresse.Text = "";
-            txtpostnr.Text = "";
-            txtisadmin.Text = "";
+            ClearAllTextBoxs();
 
         }
 
@@ -187,21 +220,19 @@ namespace Eksamen
             int PostnrINT = Convert.ToInt32(txtpostnr.Text);
             int IsAdminINT = Convert.ToInt32(txtisadmin.Text);
 
+
             // ADD CHECK FOR LATER OF DUPLICATES
+          //  if (IfUserExists(txtbrukernavn.Text) == true)
+           // {
+            //    return;
+           // }
+
             string insertQuery = $"INSERT INTO eksamen_db.Brukere (id, Brukernavn, Passord, Stilling, Prosjekt, Telefonnr, Adresse, Postnr, IsAdmin)VALUES('{0}','{txtbrukernavn.Text}', '{txtpassord.Text}', '{txtstilling.Text}', '{txtprosjekt.Text}', '{TelefonnrINT}', '{txtadresse.Text}', '{PostnrINT}', '{IsAdminINT}')";
             executeQuery(insertQuery);
 
             Print();
 
-            //Make this a function
-            txtbrukernavn.Text = "";
-            txtpassord.Text = "";
-            txtstilling.Text = "";
-            txtprosjekt.Text = "";
-            txttelefonnr.Text = "";
-            txtadresse.Text = "";
-            txtpostnr.Text = "";
-            txtisadmin.Text = "";
+            ClearAllTextBoxs();
         }
 
         private void btnslett_Click(object sender, EventArgs e)
@@ -220,15 +251,7 @@ namespace Eksamen
 
             Print();
 
-            //Make this a function
-            txtbrukernavn.Text = "";
-            txtpassord.Text = "";
-            txtstilling.Text = "";
-            txtprosjekt.Text = "";
-            txttelefonnr.Text = "";
-            txtadresse.Text = "";
-            txtpostnr.Text = "";
-            txtisadmin.Text = "";
+            ClearAllTextBoxs();
         }
 
         private void btnloggut_Click(object sender, EventArgs e)

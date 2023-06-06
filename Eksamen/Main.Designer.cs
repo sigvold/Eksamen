@@ -60,7 +60,7 @@
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.Size = new System.Drawing.Size(787, 306);
             this.DataGridView.TabIndex = 0;
-            this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
+            this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
             // 
             // lblUser
             // 
