@@ -24,7 +24,7 @@ namespace Eksamen
             string cs = $"SERVER=192.168.1.141;DATABASE=eksamen_db;UID=sigve;PASSWORD=jd_es";
 
             var con = new MySqlConnection(cs);
-
+          
             try
             {
                 con.Open();
