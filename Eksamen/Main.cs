@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Google.Protobuf.WellKnownTypes.Field.Types;
 
 namespace Eksamen
 {
@@ -20,6 +21,7 @@ namespace Eksamen
         private string InnloggetBrukernavn;
         private int IsAdmin;
         private int UserID;
+        private int CurrentSelectedID;
         public Main(MySqlDataReader mdr)
         {
             //this.userId = userId; IKKJE SKRIVE NOE OM LBL ELLER TXT OSV
@@ -117,12 +119,124 @@ namespace Eksamen
         {
             Print();
             lblUser.Text = "Velkommen: " + InnloggetBrukernavn; // Setter teksten til etiketten
+            if (IsAdmin == 0)
+            {
+                lblisadmin.Visible = false;
+                txtisadmin.Visible = false;
+
+                btnleggtil.Visible = false;
+                btnslett.Visible = false;
+            }
+            else
+            {
+
+            }
         }
 
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtbrukernavn.Text = DataGridView.CurrentRow.Cells[0].Value.ToString();
+            CurrentSelectedID = (int)DataGridView.CurrentRow.Cells[0].Value;
+            txtbrukernavn.Text = DataGridView.CurrentRow.Cells[1].Value.ToString();
+            txtpassord.Text = DataGridView.CurrentRow.Cells[2].Value.ToString();
+            txtstilling.Text = DataGridView.CurrentRow.Cells[3].Value.ToString();
+            txtprosjekt.Text = DataGridView.CurrentRow.Cells[4].Value.ToString();
+            txttelefonnr.Text = DataGridView.CurrentRow.Cells[5].Value.ToString();
+            txtadresse.Text = DataGridView.CurrentRow.Cells[6].Value.ToString();
+            txtpostnr.Text = DataGridView.CurrentRow.Cells[7].Value.ToString();
+            txtisadmin.Text = DataGridView.CurrentRow.Cells[8].Value.ToString();
+        }
 
+        private void btnoppdater_Click(object sender, EventArgs e)
+        {
+
+            int TelefonnrINT = Convert.ToInt32(txttelefonnr.Text);
+            int PostnrINT = Convert.ToInt32(txtpostnr.Text);
+            int IsAdminINT = Convert.ToInt32(txtisadmin.Text);
+
+            string updateQuery = $"UPDATE eksamen_db.Brukere SET Brukernavn='{txtbrukernavn.Text}', Passord='{txtpassord.Text}', Stilling='{txtstilling.Text}', Prosjekt='{txtprosjekt.Text}', Telefonnr='{TelefonnrINT}', Adresse='{txtadresse.Text}', Postnr='{PostnrINT}', IsAdmin='{IsAdminINT}' WHERE id='{CurrentSelectedID}'";
+            executeQuery(updateQuery);
+            IsAdmin = IsAdminINT;
+
+            if (IsAdmin == 0)
+            {
+                lblisadmin.Visible = false;
+                txtisadmin.Visible = false;
+
+                btnleggtil.Visible = false;
+                btnslett.Visible = false;
+            }
+            //MAKE FUNCTION LATER
+
+            Print();
+
+            //Make this a function
+            txtbrukernavn.Text = "";
+            txtpassord.Text = "";
+            txtstilling.Text = "";
+            txtprosjekt.Text = "";
+            txttelefonnr.Text = "";
+            txtadresse.Text = "";
+            txtpostnr.Text = "";
+            txtisadmin.Text = "";
+
+        }
+
+        private void btnleggtil_Click(object sender, EventArgs e)
+        {
+            int TelefonnrINT = Convert.ToInt32(txttelefonnr.Text);
+            int PostnrINT = Convert.ToInt32(txtpostnr.Text);
+            int IsAdminINT = Convert.ToInt32(txtisadmin.Text);
+
+            // ADD CHECK FOR LATER OF DUPLICATES
+            string insertQuery = $"INSERT INTO eksamen_db.Brukere (id, Brukernavn, Passord, Stilling, Prosjekt, Telefonnr, Adresse, Postnr, IsAdmin)VALUES('{0}','{txtbrukernavn.Text}', '{txtpassord.Text}', '{txtstilling.Text}', '{txtprosjekt.Text}', '{TelefonnrINT}', '{txtadresse.Text}', '{PostnrINT}', '{IsAdminINT}')";
+            executeQuery(insertQuery);
+
+            Print();
+
+            //Make this a function
+            txtbrukernavn.Text = "";
+            txtpassord.Text = "";
+            txtstilling.Text = "";
+            txtprosjekt.Text = "";
+            txttelefonnr.Text = "";
+            txtadresse.Text = "";
+            txtpostnr.Text = "";
+            txtisadmin.Text = "";
+        }
+
+        private void btnslett_Click(object sender, EventArgs e)
+        {
+            string deletQuery = $"DELETE FROM eksamen_db.Brukere WHERE id = {CurrentSelectedID}";
+            executeQuery(deletQuery);
+
+            if (UserID == CurrentSelectedID)
+            {
+                //Make this a function
+                this.Close();
+                Login loginForm = new Login();
+                loginForm.Closed += (s, args) => this.Close();
+                loginForm.Show();
+            }
+
+            Print();
+
+            //Make this a function
+            txtbrukernavn.Text = "";
+            txtpassord.Text = "";
+            txtstilling.Text = "";
+            txtprosjekt.Text = "";
+            txttelefonnr.Text = "";
+            txtadresse.Text = "";
+            txtpostnr.Text = "";
+            txtisadmin.Text = "";
+        }
+
+        private void btnloggut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login loginForm = new Login();
+            loginForm.Closed += (s, args) => this.Close();
+            loginForm.Show();
         }
     }
 }

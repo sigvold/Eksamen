@@ -49,6 +49,7 @@
             this.btnoppdater = new System.Windows.Forms.Button();
             this.btnleggtil = new System.Windows.Forms.Button();
             this.btnslett = new System.Windows.Forms.Button();
+            this.btnloggut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +99,7 @@
             // 
             this.txtpassord.Location = new System.Drawing.Point(30, 136);
             this.txtpassord.Name = "txtpassord";
+            this.txtpassord.PasswordChar = '*';
             this.txtpassord.Size = new System.Drawing.Size(100, 20);
             this.txtpassord.TabIndex = 4;
             // 
@@ -205,6 +207,7 @@
             this.btnoppdater.TabIndex = 18;
             this.btnoppdater.Text = "Oppdater";
             this.btnoppdater.UseVisualStyleBackColor = true;
+            this.btnoppdater.Click += new System.EventHandler(this.btnoppdater_Click);
             // 
             // btnleggtil
             // 
@@ -214,6 +217,7 @@
             this.btnleggtil.TabIndex = 19;
             this.btnleggtil.Text = "Legg til";
             this.btnleggtil.UseVisualStyleBackColor = true;
+            this.btnleggtil.Click += new System.EventHandler(this.btnleggtil_Click);
             // 
             // btnslett
             // 
@@ -223,12 +227,24 @@
             this.btnslett.TabIndex = 20;
             this.btnslett.Text = "Slett";
             this.btnslett.UseVisualStyleBackColor = true;
+            this.btnslett.Click += new System.EventHandler(this.btnslett_Click);
+            // 
+            // btnloggut
+            // 
+            this.btnloggut.Location = new System.Drawing.Point(30, 472);
+            this.btnloggut.Name = "btnloggut";
+            this.btnloggut.Size = new System.Drawing.Size(75, 23);
+            this.btnloggut.TabIndex = 21;
+            this.btnloggut.Text = "Logg ut";
+            this.btnloggut.UseVisualStyleBackColor = true;
+            this.btnloggut.Click += new System.EventHandler(this.btnloggut_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1001, 549);
+            this.Controls.Add(this.btnloggut);
             this.Controls.Add(this.btnslett);
             this.Controls.Add(this.btnleggtil);
             this.Controls.Add(this.btnoppdater);
@@ -282,5 +298,6 @@
         private System.Windows.Forms.Button btnoppdater;
         private System.Windows.Forms.Button btnleggtil;
         private System.Windows.Forms.Button btnslett;
+        private System.Windows.Forms.Button btnloggut;
     }
 }

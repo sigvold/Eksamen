@@ -78,7 +78,7 @@ namespace Eksamen
 
         private void Login_Load(object sender, EventArgs e)
         {
-            btnLogin.Visible = false;
+
         }
     }
 }
