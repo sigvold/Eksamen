@@ -28,10 +28,11 @@ C:\Users\sigve\source\repos\Eksamen\Eksamen\bin\Debug\System.Runtime.CompilerSer
 C:\Users\sigve\source\repos\Eksamen\Eksamen\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.csproj.AssemblyReference.cache
 C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.csproj.SuggestedBindingRedirects.cache
-C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.Form1.resources
 C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.Properties.Resources.resources
 C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.csproj.GenerateResource.cache
 C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.csproj.CoreCompileInputs.cache
 C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.csproj.CopyComplete
 C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.exe
 C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.pdb
+C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.Login.resources
+C:\Users\sigve\source\repos\Eksamen\Eksamen\obj\Debug\Eksamen.Main.resources
