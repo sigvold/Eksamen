@@ -117,6 +117,19 @@ namespace Eksamen
 
         }
 
+        private void DataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.DataGridView.Columns[e.ColumnIndex].Name == "Passord")
+            {
+                if (e.Value != null)
+                {
+                    e.Value = "*********";
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
+
         private void ClearAllTextBoxs()
         {
             txtbrukernavn.Text = "";
@@ -139,27 +152,6 @@ namespace Eksamen
                 btnleggtil.Visible = false;
                 btnslett.Visible = false;
             }
-        }
-
-        private bool IfUserExists(String Username)
-        {
-            openConnection();
-            string SelectQuery = "SELECT * FROM eksamen_db.Brukere WHERE Brukernavn = @Username";
-            command = new MySqlCommand(SelectQuery, connection);
-            command.Parameters.AddWithValue("@Username", Username);
-
-            MySqlDataReader reader = command.ExecuteReader();
-
-            if (reader.HasRows)
-            {
-                reader.Close();
-                closeConnection();
-                MessageBox.Show("Brukernavnet er tatt!");
-                return true;
-            }
-            reader.Close();
-            closeConnection();
-            return false;
         }
 
 
@@ -190,11 +182,6 @@ namespace Eksamen
             int PostnrINT = Convert.ToInt32(txtpostnr.Text);
             int IsAdminINT = Convert.ToInt32(txtisadmin.Text);
 
-            if (CurrentSelectedID != UserID && IsAdmin == 0)
-            {
-                Console.WriteLine("Secuity Breach!");
-                return;
-            }
 
             string updateQuery = $"UPDATE eksamen_db.Brukere SET Brukernavn='{txtbrukernavn.Text}', Passord='{txtpassord.Text}', Stilling='{txtstilling.Text}', Prosjekt='{txtprosjekt.Text}', Telefonnr='{TelefonnrINT}', Adresse='{txtadresse.Text}', Postnr='{PostnrINT}', IsAdmin='{IsAdminINT}' WHERE id='{CurrentSelectedID}'";
             executeQuery(updateQuery);
@@ -220,12 +207,6 @@ namespace Eksamen
             int PostnrINT = Convert.ToInt32(txtpostnr.Text);
             int IsAdminINT = Convert.ToInt32(txtisadmin.Text);
 
-
-            // ADD CHECK FOR LATER OF DUPLICATES
-          //  if (IfUserExists(txtbrukernavn.Text) == true)
-           // {
-            //    return;
-           // }
 
             string insertQuery = $"INSERT INTO eksamen_db.Brukere (id, Brukernavn, Passord, Stilling, Prosjekt, Telefonnr, Adresse, Postnr, IsAdmin)VALUES('{0}','{txtbrukernavn.Text}', '{txtpassord.Text}', '{txtstilling.Text}', '{txtprosjekt.Text}', '{TelefonnrINT}', '{txtadresse.Text}', '{PostnrINT}', '{IsAdminINT}')";
             executeQuery(insertQuery);

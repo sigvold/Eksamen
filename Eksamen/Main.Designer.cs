@@ -61,6 +61,7 @@
             this.DataGridView.Size = new System.Drawing.Size(787, 306);
             this.DataGridView.TabIndex = 0;
             this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
+            this.DataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridView_CellFormatting);
             // 
             // lblUser
             // 
