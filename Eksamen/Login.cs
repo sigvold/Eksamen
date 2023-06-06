@@ -75,5 +75,10 @@ namespace Eksamen
             closeConnection();
 
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            btnLogin.Visible = false;
+        }
     }
 }

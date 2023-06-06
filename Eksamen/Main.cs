@@ -16,16 +16,18 @@ namespace Eksamen
     {
         MySqlConnection connection = new MySqlConnection("server=192.168.1.141;port=3306;user id=sigve;password=jd_es;database=eksamen_db");
         MySqlCommand command = new MySqlCommand();
-        //private int userId; // Holder brukerens ID
+
         private string InnloggetBrukernavn;
+        private int IsAdmin;
+        private int UserID;
         public Main(MySqlDataReader mdr)
         {
-            //this.userId = userId;
+            //this.userId = userId; IKKJE SKRIVE NOE OM LBL ELLER TXT OSV
 
             InnloggetBrukernavn = mdr.GetString("Brukernavn");
-            //Console.WriteLine(InnloggetBrukernavn);
+            IsAdmin = mdr.GetInt32("IsAdmin");
+            UserID = mdr.GetInt32("id");
             InitializeComponent();
-            //int userId = mdr.GetInt32("id");
         }
 
         public void openConnection()
@@ -73,30 +75,54 @@ namespace Eksamen
 
         private void Print()
         {
-            try
+            if (IsAdmin == 1)
             {
-                string selectQuery = "SELECT * FROM eksamen_db.Brukere";
-                DataTable dataTable = new DataTable();
-                MySqlDataAdapter adapter = new MySqlDataAdapter(selectQuery, connection);
-                adapter.Fill(dataTable);
-                DataGridView.DataSource = dataTable;
+                try
+                {
+                    string selectQuery = $"SELECT * FROM eksamen_db.Brukere WHERE IsAdmin = 0 OR id = {UserID}";
+                    DataTable dataTable = new DataTable();
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(selectQuery, connection);
+                    adapter.Fill(dataTable);
+                    DataGridView.DataSource = dataTable;
 
-                closeConnection();
+                    closeConnection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    string selectQuery = $"SELECT * FROM eksamen_db.Brukere WHERE id = {UserID}";
+                    DataTable dataTable = new DataTable();
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(selectQuery, connection);
+                    adapter.Fill(dataTable);
+                    DataGridView.DataSource = dataTable;
+
+                    closeConnection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
+
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
             Print();
+            lblUser.Text = "Velkommen: " + InnloggetBrukernavn; // Setter teksten til etiketten
+        }
 
-            Label lblWelcome = new Label(); // Oppretter en ny label
-            lblWelcome.Text = "Velkommen:" + InnloggetBrukernavn.ToString(); // Setter teksten til etiketten
-            lblWelcome.Location = new Point(10, 10); // Plasserer etiketten på skjermen
-            this.Controls.Add(lblWelcome); // Legger etiketten til skjermkontrollene
+        private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtbrukernavn.Text = DataGridView.CurrentRow.Cells[0].Value.ToString();
+
         }
     }
 }
