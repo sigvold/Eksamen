@@ -243,9 +243,9 @@ namespace Eksamen
             loginForm.Show();
         }
 
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnAvslutt_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
     }
 }

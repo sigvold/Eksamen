@@ -54,7 +54,6 @@ namespace Eksamen
 
                 if (mdr.Read())
                 {
-                    Console.WriteLine("SUCCESS");
                     this.Hide();
                     Main frm2 = new Main(mdr);
                     frm2.ShowDialog();
@@ -75,9 +74,9 @@ namespace Eksamen
 
         }
 
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnAvslutt_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
     }
 }
