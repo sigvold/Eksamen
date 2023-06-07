@@ -18,21 +18,24 @@ namespace Eksamen
     {
         MySqlConnection connection = new MySqlConnection("server=192.168.1.141;port=3306;user id=sigve;password=jd_es;database=eksamen_db");
         MySqlCommand command = new MySqlCommand();
-
+        //Definerer noen lokale variabler som kommer til å bli brukt ofte 
         private string InnloggetBrukernavn;
         private int IsAdmin;
         private int UserID;
         private int CurrentSelectedID;
+
+        //Funksjon som kjører i starten av opprettelsen av forms-en
         public Main(MySqlDataReader mdr)
         {
-            //this.userId = userId; IKKJE SKRIVE NOE OM LBL ELLER TXT OSV
-
+            //Henter mdr fra login siden
+            //Redefinerer variablene ut fra mdr fra login siden
             InnloggetBrukernavn = mdr.GetString("Brukernavn");
             IsAdmin = mdr.GetInt32("IsAdmin");
             UserID = mdr.GetInt32("id");
             InitializeComponent();
         }
 
+        // Funksjon som åpner koblingen til databasen
         public void openConnection()
         {
             if (connection.State == System.Data.ConnectionState.Closed)
@@ -41,6 +44,7 @@ namespace Eksamen
             }
         }
 
+        // Funksjon som lukker koblingen til databasen
         public void closeConnection()
         {
             if (connection.State == System.Data.ConnectionState.Open)
@@ -50,6 +54,7 @@ namespace Eksamen
 
         }
 
+        //Funksjon som bare kjører string Query's vi sender
         public void executeQuery(String query)
         {
             try
@@ -117,19 +122,23 @@ namespace Eksamen
 
         }
 
+        //Funksjon som kjører når DataGridViewen skal oppdateres (Her kan vi endre informasjon)
         private void DataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            //Sjekker om kolonnen som genereres heter "Passord"
             if (this.DataGridView.Columns[e.ColumnIndex].Name == "Passord")
             {
+                //Skjekker om verdien er ikke blank
                 if (e.Value != null)
                 {
+                    //Setter displayen av kolonnen til "********" slik vi ikke ser andre sine passord
                     e.Value = "*********";
                     e.FormattingApplied = true;
                 }
             }
         }
 
-
+        //Setter innhold til alle tekstboks inputene til blank
         private void ClearAllTextBoxs()
         {
             txtBrukernavn.Text = "";
@@ -142,6 +151,7 @@ namespace Eksamen
             txtIsadmin.Text = "";
         }
 
+        //Skjuler knapper om brukeren ikke er admin
         private void HideIfNotAdmin()
         {
             if (IsAdmin == 0)
@@ -157,11 +167,15 @@ namespace Eksamen
 
         private void Main_Load(object sender, EventArgs e)
         {
+            //Oppdaterer gridviewen
             Print();
+            //Legger til navnet til personen som er innlogget til labelen
             lblUser.Text = "Velkommen: " + InnloggetBrukernavn;
+            //Skjuler knapper om brukeren ikke er admin
             HideIfNotAdmin();
         }
 
+        // Henter ut informasjon fra gridviewen og setter det inn i tekstboksene
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             CurrentSelectedID = (int)DataGridView.CurrentRow.Cells[0].Value;
@@ -177,42 +191,49 @@ namespace Eksamen
 
         private void btnoppdater_Click(object sender, EventArgs e)
         {
-            
+            //Konverterer string tekstboks inputene til int siden databasen aksepterer bare INT på disse 3
             int TelefonnrINT = Convert.ToInt32(txtTelefonnr.Text);
             int PostnrINT = Convert.ToInt32(txtPostnr.Text);
             int IsAdminINT = Convert.ToInt32(txtIsadmin.Text);
 
-
+            //Definerer Queryen som skal kjøre på databasen
             string updateQuery = $"UPDATE eksamen_db.Brukere SET Brukernavn='{txtBrukernavn.Text}', Passord='{txtPassord.Text}', Stilling='{txtStilling.Text}', Prosjekt='{txtProsjekt.Text}', Telefonnr='{TelefonnrINT}', Adresse='{txtAdresse.Text}', Postnr='{PostnrINT}', IsAdmin='{IsAdminINT}' WHERE id='{CurrentSelectedID}'";
+            //Kjører Queryen ved bruk at "executeQuery" kommandoen
             executeQuery(updateQuery);
 
+            //Skjekker at viss den dataen som blir oppdatert er på den person som er innlogget så passer vi på å skifte en lokal variabel her som passer på å vise admin rettigheter om personen er admin, derfor om de skifter admin tilgang på seg selv til ikke admin så mister de rettighetene
             if (UserID == CurrentSelectedID)
             {
-                Console.WriteLine("Changed Self Data");
+ 
                 IsAdmin = IsAdminINT;
             }
-
+            //Skjuler knapper om brukeren ikke er admin
             HideIfNotAdmin();
 
+            //Oppdaterer gridviewen
             Print();
 
-            //Make this a function
+            //Setter innhold til alle tekstboks inputene til blank
             ClearAllTextBoxs();
 
         }
 
         private void btnleggtil_Click(object sender, EventArgs e)
         {
+            //Konverterer string tekstboks inputene til int siden databasen aksepterer bare INT på disse 3
             int TelefonnrINT = Convert.ToInt32(txtTelefonnr.Text);
             int PostnrINT = Convert.ToInt32(txtPostnr.Text);
             int IsAdminINT = Convert.ToInt32(txtIsadmin.Text);
 
-
+            //Definerer Queryen som skal kjøre på databasen
             string insertQuery = $"INSERT INTO eksamen_db.Brukere (id, Brukernavn, Passord, Stilling, Prosjekt, Telefonnr, Adresse, Postnr, IsAdmin)VALUES('{0}','{txtBrukernavn.Text}', '{txtPassord.Text}', '{txtStilling.Text}', '{txtProsjekt.Text}', '{TelefonnrINT}', '{txtAdresse.Text}', '{PostnrINT}', '{IsAdminINT}')";
+            //Kjører Queryen ved bruk at "executeQuery" kommandoen
             executeQuery(insertQuery);
 
+            //Oppdaterer gridviewen
             Print();
 
+            //Setter innhold til alle tekstboks inputene til blank
             ClearAllTextBoxs();
         }
 
@@ -221,22 +242,26 @@ namespace Eksamen
             string deletQuery = $"DELETE FROM eksamen_db.Brukere WHERE id = {CurrentSelectedID}";
             executeQuery(deletQuery);
 
+            //Hvis innlogget bruker sletter seg selv så logger vi de ut
             if (UserID == CurrentSelectedID)
             {
-                //Make this a function
+                //Lukker denne formsen og åpner den andre
                 this.Close();
                 Login loginForm = new Login();
                 loginForm.Closed += (s, args) => this.Close();
                 loginForm.Show();
             }
 
+            //Oppdaterer gridviewen
             Print();
 
+            //Setter innhold til alle tekstboks inputene til blank
             ClearAllTextBoxs();
         }
 
         private void btnloggut_Click(object sender, EventArgs e)
         {
+            //Lukker denne formsen og åpner den andre
             this.Close();
             Login loginForm = new Login();
             loginForm.Closed += (s, args) => this.Close();
@@ -245,6 +270,7 @@ namespace Eksamen
 
         private void btnAvslutt_Click(object sender, EventArgs e)
         {
+            //Avslutten applikasjonen
             Application.Exit();
         }
     }
